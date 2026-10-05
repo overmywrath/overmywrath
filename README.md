@@ -7,4 +7,4 @@
 ### projects I worked/work on
 
 * https://corrupt.im — old biolink project, I ended up quitting (2020-2025) - might return soon idk tl
-* there r more projects I've worked on and am currently work*
+* there r more projects I've worked on and am currently working on, but i'm too lazy to list them all lol
