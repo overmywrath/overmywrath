@@ -1,0 +1,95 @@
+kim(filehost) docs
+apikey, as promised 07d9945739848399fb79761d209317b3ab18363a38f9f3dd6925e4ad01af34607938ffa368cae9effec0bda6e184cddb51deca698302131f670a307aebdf87b392e9485c9b06efbb2621b9295b71b7ce47795839a7ddf935b9de901b435994250cdd1b5a6db92b337fd0896519887c8c7488bea7f739370695ed7a478d14cc4f
+
+## api endpoint
+
+https://zzz.cried.online/v1/upload
+
+## upl a file
+
+### (windows) PowerShell
+
+-- powershell
+curl.exe -X POST "https://zzz.cried.online/v1/upload" `
+  -H "x-kim-api-key: KIMMY_API" `
+  -H "x-kim-mode: underoos" `
+  -H "x-filename: image.png" `
+  -H "x-kim-visibility: public" `
+  -H "Content-Type: image/png" `
+  --data-binary "@image.png"
+
+replace `KIMMY_API` with the api key provided at the top
+
++ required headers
+
+| Header | Description |
+|---|---|
+| `x-kim-api-key` | api key provided at the top |
+| `x-kim-mode` | mode is underoos |
+| `x-kim-visibility` | keep this at public - only paid users can use other shit bla bla |
+| `Content-Type` | files MIME type |
+| `x-filename` | common sense |
+
++ js example
+
+-- javascript
+const response = await fetch(
+  "https://zzz.cried.online/v1/upload",
+  {
+    method: "POST",
+    headers: {
+      "x-kim-api-key": process.env.KIMMY_API,
+      "x-kim-mode": "underoos",
+      "x-filename": "image.png",
+      "x-kim-visibility": "public",
+      "Content-Type": "image/png"
+    },
+    body: file
+  }
+);
+
+const result = await response.json();
+
+if (!response.ok) {
+  throw new Error(result.error?.message ?? "Upload failed");
+}
+
+console.log(result.data);
+
+
+**common sense:** keep the API key on your backend. never expose it in public frontend JavaScript
+
++ upl response
+
+a successful upload returns JSON containing information about the stuff bla bla
+
+Example:
+
+-- json
+{
+  "success": true,
+  "data": {
+    "key": "GENERATED_FILE_KEY",
+    "original_name": "image.png",
+    "content_type": "image/png",
+    "size": 12345,
+    "visibility": "public",
+    "sha256_verified": true,
+    "url": "https://zzz.cried.online/GENERATED_FILE_KEY"
+  },
+  "request": {
+    "id": "req_123456"
+  }
+}
+
+
+## common errors
+
+| Error | Meaning |
+|---|---|
+| `missing_api_key` | apikey missing |
+| `invalid_api_key` | wrong apikey |
+| `invalid_upload_mode` | upload mode must be underoos |
+| `file_too_large` | file exceeds 50 MiB |
+| `checksum_mismatch` | provided SHA-256 checksum doesn't match |
+| `storage_unavailable` | storage backend is unavailable |
