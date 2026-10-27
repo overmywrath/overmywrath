@@ -6,5 +6,4 @@
 
 ### projects I worked/work on
 
-* corrupt.im — old "biolink & microblogging" project, I ended up quitting (2020-2025) - might return soon idk tl
-* too lazy to put everything
+* too lazy
