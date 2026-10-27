@@ -1,4 +1,4 @@
-## @f9ed
+## @stico20
 
 > u can contact me via discord ([@f9ed](https://discord.com/users/1509416026746388522)) or email ([subblite@gmail.com](mailto:subblite@gmail.com)) - I respond faster on discord
 
